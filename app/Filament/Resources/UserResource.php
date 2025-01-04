@@ -42,8 +42,8 @@ class UserResource extends Resource
                     ->options([
                         'superadmin' => 'Superadmin',
                         'yayasan' => 'Yayasan',
-                        'branch_manager' => 'Branch Manager',
-                        'user' => 'User',
+                        'kepala_sekolah' => 'Kepala Sekolah',
+                        'operator' => 'operator',
                     ])
                     ->required(),
                 Forms\Components\Select::make('branch_id')
@@ -73,6 +73,8 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
+                    ->visible(fn () => auth()->user()->role === 'superadmin' || auth()->user()->role === 'yayasan'),
+                Tables\Actions\DeleteAction::make()
                     ->visible(fn () => auth()->user()->role === 'superadmin' || auth()->user()->role === 'yayasan'),
             ])
             ->bulkActions([

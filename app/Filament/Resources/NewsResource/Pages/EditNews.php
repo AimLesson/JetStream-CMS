@@ -2,8 +2,9 @@
 
 namespace App\Filament\Resources\NewsResource\Pages;
 
-use App\Filament\Resources\NewsResource;
 use Filament\Actions;
+use Illuminate\Support\Facades\Log;
+use App\Filament\Resources\NewsResource;
 use Filament\Resources\Pages\EditRecord;
 
 class EditNews extends EditRecord
@@ -13,27 +14,40 @@ class EditNews extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->visible(fn () => auth()->user()->role === 'superadmin' || auth()->user()->role === 'yayasan' || auth()->user()->role === 'kepala_sekolah'),
         ];
     }
+    
 
     public static function canAccess(array $parameters = []): bool
-{
-    $user = auth()->user();
-
-    // Superadmin and Yayasan have access
-    if ($user->role === 'superadmin' || $user->role === 'yayasan') {
-        return true;
+    {
+        $user = auth()->user();
+    
+        // Superadmin and Yayasan have unrestricted access
+        if ($user->role === 'superadmin' || $user->role === 'yayasan') {
+            return true;
+        }
+    
+        // Extract the record ID from the nested structure
+        $record = $parameters['record'] ?? null;
+    
+        if (is_array($record)) {
+            // Extract the first element if it's nested
+            $record = reset($record);
+        }
+    
+        // Ensure we have a valid News model instance
+        if ($record instanceof \App\Models\News) {
+            // Allow access if the user's branch_id matches the news' branch_id
+            return $user->branch_id === $record->branch_id;
+        }
+    
+        // Default: Deny access
+        return false;
     }
-
-    // Branch Manager access based on branch_id
-    if ($user->role === 'branch_manager') {
-        $branchId = $parameters['branch_id'] ?? null;
-        return $branchId && $user->branch_id === $branchId;
-    }
-
-    // Default: No access
-    return false;
-}
+    
+    
+    
 
 }

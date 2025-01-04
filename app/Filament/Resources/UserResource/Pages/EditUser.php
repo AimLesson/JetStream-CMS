@@ -17,4 +17,10 @@ class EditUser extends EditRecord
 
         abort(403, 'Unauthorized action.');
     }
+
+    protected function canDelete(): bool
+    {
+        return auth()->user()->role === 'superadmin' || auth()->user()->role === 'yayasan';
+    }
+
 }

@@ -1,0 +1,17 @@
+@import '/vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+.fi-body {
+    background: url('/images/background.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.fi-sidebar {
+    @apply bg-black/50;
+}
+
+.fi-logo {
+    @apply whitespace-nowrap text-3xl;
+}
+

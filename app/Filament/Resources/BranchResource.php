@@ -45,12 +45,11 @@ class BranchResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->visible(function ($record) {
-                    $user = auth()->user();
-                
-                    return $user->role === 'superadmin' 
-                        || $user->role === 'yayasan' 
-                        || ($user->role === 'branch_manager' && $user->branch_id === $record->id);
-                    }),
+                    return auth()->user()->role === 'superadmin' || auth()->user()->role === 'yayasan' || auth()->user()->branch_id === $record->id;
+                }),
+                Tables\Actions\DeleteAction::make()
+                ->visible(fn () => auth()->user()->role === 'superadmin' || auth()->user()->role === 'yayasan'),
+
             ])
             ->bulkActions([
                 //

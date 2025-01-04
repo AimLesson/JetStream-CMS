@@ -34,12 +34,18 @@ class News extends Model
         static::saving(function ($news) {
             $user = auth()->user();
     
+            // Skip branch check for `is_published` toggle
+            if ($news->isDirty('is_published')) {
+                return;
+            }
+    
             // Restrict editing news to the same branch
             if ($user->role !== 'superadmin' && $user->role !== 'yayasan' && $news->branch_id !== $user->branch_id) {
                 abort(403, 'You are not authorized to edit news for this branch.');
             }
         });
     }
+    
     
 
 }
