@@ -91,7 +91,7 @@ class NewsResource extends Resource
                     return $user->role === 'superadmin' 
                         || $user->role === 'yayasan' 
                         || ($user->role === 'branch_manager' && $user->branch_id === $record->id);
-                    }),,
+                    }),
                 Tables\Actions\Action::make('preview')
                     ->label('Preview')
                     ->url(fn ($record) => route('news.preview', ['newsId' => $record->id]))
