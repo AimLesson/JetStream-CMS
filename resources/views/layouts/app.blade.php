@@ -22,46 +22,45 @@
 
             <!-- Navigation Links -->
             <nav class="flex space-x-4">
-                <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'text-blue-500 font-bold' : 'text-gray-800 hover:text-blue-500' }}">
-                    Home
-                </a>
-                <a href="{{ url('/about') }}" class="{{ request()->is('about') ? 'text-blue-500 font-bold' : 'text-gray-800 hover:text-blue-500' }}">
-                    About
-                </a>
-            
+                <a href="{{ url('/') }}" class="text-gray-800 hover:text-blue-500">Home</a>
+                <a href="{{ url('/about') }}" class="text-gray-800 hover:text-blue-500">About</a>
+
                 <!-- Branches Dropdown -->
                 <div class="relative">
-                    <button class="text-gray-800 hover:text-blue-500 flex items-center {{ request()->is('branches*') ? 'text-blue-500 font-bold' : '' }}" id="branches-menu">
+                    <button class="text-gray-800 hover:text-blue-500 flex items-center" id="branches-menu">
                         Cabang
-                        <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div class="absolute hidden bg-white shadow-lg rounded-lg mt-2 w-auto min-w-[200px] z-50" id="branches-dropdown">
+                    <div class="absolute hidden bg-white shadow-lg rounded-lg mt-2 w-auto min-w-[200px] z-50"
+                        id="branches-dropdown">
                         <div class="flex flex-col whitespace-nowrap">
                             @foreach ($branches as $branch)
                                 <a href="{{ route('branches.show', $branch->id) }}"
-                                   class="{{ request()->is('branches/' . $branch->id) ? 'text-blue-500 font-bold' : 'text-gray-700 hover:bg-gray-100' }} block px-4 py-2">
+                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                                     {{ $branch->name }}
                                 </a>
                             @endforeach
                         </div>
                     </div>
+
                 </div>
+
             </nav>
-            
         </div>
     </header>
 
 
 
     <!-- Main Content -->
-    <main class="mt-20">
+    <main class="mt-20 mb-20">
         @yield('content')
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 mt-8">
+    {{-- <footer class="bg-gray-800 text-white py-6 mt-8">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left">
             <div>
                 <h4 class="font-bold text-lg">{{ $profile->name }}</h4>
@@ -86,9 +85,30 @@
             </div>
         </div>
         <p class="text-center mt-4">&copy; {{ date('Y') }} {{ $profile->name }}. All rights reserved.</p>
+    </footer> --}}
+
+    
+
+    <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
+        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">&copy; {{ date('Y') }} {{ $profile->name }}. All rights reserved.
+        </span>
+        <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+            <li>
+                <a href="#" class="hover:underline me-4 md:me-6">Home</a>
+            </li>
+            <li>
+                <a href="#" class="hover:underline me-4 md:me-6">About</a>
+            </li>
+            <li>
+                <a href="#" class="hover:underline">Admin</a>
+            </li>
+        </ul>
+        </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.0/flowbite.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuButton = document.getElementById('branches-menu');
