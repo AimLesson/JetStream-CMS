@@ -22,32 +22,34 @@
 
             <!-- Navigation Links -->
             <nav class="flex space-x-4">
-                <a href="{{ url('/') }}" class="text-gray-800 hover:text-blue-500">Home</a>
-                <a href="{{ route('branches.about', $branch->id) }}" class="text-gray-800 hover:text-blue-500">About Us</a>
+                <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'text-blue-500 font-bold' : 'text-gray-800 hover:text-blue-500' }}">
+                    Home
+                </a>
+                <a href="{{ route('branches.about', $branch->id) }}" class="{{ request()->is('branches/' . $branch->id. '/about') ? 'text-blue-500 font-bold' : 'text-gray-700 hover:bg-gray-100' }} ">
+                    About
+                </a>
+            
                 <!-- Branches Dropdown -->
                 <div class="relative">
-                    <button class="text-gray-800 hover:text-blue-500 flex items-center" id="branches-menu">
+                    <button class="text-gray-800 hover:text-blue-500 flex items-center {{ request()->is('branches*') ? 'text-blue-500 font-bold' : '' }}" id="branches-menu">
                         Cabang
-                        <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
+                        <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div class="absolute hidden bg-white shadow-lg rounded-lg mt-2 w-auto min-w-[200px] z-50"
-                        id="branches-dropdown">
+                    <div class="absolute hidden bg-white shadow-lg rounded-lg mt-2 w-auto min-w-[200px] z-50" id="branches-dropdown">
                         <div class="flex flex-col whitespace-nowrap">
                             @foreach ($branches as $branch)
                                 <a href="{{ route('branches.show', $branch->id) }}"
-                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                   class="{{ request()->is('branches/' . $branch->id) ? 'text-blue-500 font-bold' : 'text-gray-700 hover:bg-gray-100' }} block px-4 py-2">
                                     {{ $branch->name }}
                                 </a>
                             @endforeach
                         </div>
                     </div>
-
                 </div>
-
             </nav>
+            
         </div>
     </header>
 
