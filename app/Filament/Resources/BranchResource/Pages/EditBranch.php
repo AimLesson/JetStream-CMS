@@ -19,6 +19,21 @@ class EditBranch extends EditRecord
 
     public static function canAccess(array $parameters = []): bool
     {
-        return auth()->user()->role === 'superadmin' || auth()->user()->role === 'yayasan';
+        $user = auth()->user();
+    
+        // Superadmin and Yayasan have access
+        if ($user->role === 'superadmin' || $user->role === 'yayasan') {
+            return true;
+        }
+    
+        // Branch Manager access based on branch_id
+        if ($user->role === 'branch_manager') {
+            $branchId = $parameters['branch_id'] ?? null;
+            return $branchId && $user->branch_id === $branchId;
+        }
+    
+        // Default: No access
+        return false;
     }
+    
 }

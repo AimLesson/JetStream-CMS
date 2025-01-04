@@ -85,12 +85,13 @@ class NewsResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')->label('Created')->dateTime(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->visible(fn ($record) => 
-                        auth()->user()->role === 'superadmin' ||
-                        auth()->user()->role === 'yayasan' ||
-                        auth()->user()->branch_id === $record->branch_id // Allow editing only for the same branch
-                    ),
+                Tables\Actions\EditAction::make()->visible(function ($record) {
+                    $user = auth()->user();
+                
+                    return $user->role === 'superadmin' 
+                        || $user->role === 'yayasan' 
+                        || ($user->role === 'branch_manager' && $user->branch_id === $record->id);
+                    }),,
                 Tables\Actions\Action::make('preview')
                     ->label('Preview')
                     ->url(fn ($record) => route('news.preview', ['newsId' => $record->id]))
