@@ -12,6 +12,6 @@
 }
 
 .fi-logo {
-    @apply whitespace-nowrap text-3xl;
+    @apply whitespace-nowrap text-xl;
 }
 
