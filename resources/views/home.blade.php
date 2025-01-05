@@ -7,7 +7,7 @@
 <!-- Carousel -->
 <div id="carouselExample" class="relative w-full" data-carousel="static">
     <!-- Carousel Wrapper -->
-    <div class="relative h-[600px] overflow-hidden rounded-lg"> <!-- Changed height to h-96 -->
+    <div class="relative h-96 lg:h-[600px] overflow-hidden rounded-lg">
         @foreach ($latestNews as $index => $news)
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
                 <img src="{{ asset('storage/' . $news->image) }}" 
@@ -37,21 +37,31 @@
     </button>
 </div>
 
+<section 
+    class="relative bg-cover bg-center mt-10 border shadow" 
+    style="background-image: url('https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png');"
+>
+    <!-- Overlay for opacity -->
+    <div class="absolute inset-0 bg-black opacity-50"></div>
 
+    <!-- Content -->
+    <div class="relative gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+        <div class="font-light text-gray-50 sm:text-lg">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-50">{{ $profile->name }}</h2>
+            <p class="mb-4 text-justify">{!! $profile->about !!}</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mt-8">
+            <img class="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1">
+            <img class="mt-4 w-full lg:mt-10 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="office content 2">
+        </div>
 
-
-<!-- Profile Info -->
-<div class="bg-white py-10">
-    <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-bold">{{ $profile->name }}</h2>
-        <p class="mt-4 text-gray-600">{{ $profile->about }}</p>
     </div>
-</div>
+</section>
+
 
 <!-- News Cards -->
-<!-- News Cards -->
-<div class="container mx-auto py-10">
-    <h2 class="text-2xl font-bold mb-6">All News</h2>
+<div class="mx-auto pb-10 mt-10 p-4">
+    <h2 class="text-2xl font-bold mb-6">Latest News</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @foreach ($newsList as $news)
             <div class="bg-white rounded shadow-md overflow-hidden">
@@ -72,6 +82,8 @@
         {{ $newsList->links() }}
     </div>
 </div>
+
+
 
 
 @endsection

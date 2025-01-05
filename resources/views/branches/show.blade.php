@@ -4,7 +4,30 @@
 
 @section('content')
 <div class="container mx-auto py-10">
-    <!-- Carousel for Latest News -->
+
+    <section 
+        class="relative bg-cover bg-center mb-10 border shadow" 
+        style="background-image: url('https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png');"
+    >
+        <!-- Overlay for opacity -->
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+
+        <!-- Content -->
+        <div class="relative gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+            <div class="font-light text-gray-50 sm:text-lg">
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-50">{{ $branch->name }}</h2>
+                <p class="mb-4 text-justify">{!! $branch->about !!}</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mt-8">
+                <img class="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1">
+                <img class="mt-4 w-full lg:mt-10 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="office content 2">
+            </div>
+
+        </div>
+    </section>
+
+<!-- Carousel for Latest News -->
+@if ($newsList->count() > 0)
     <div id="carouselExample" class="relative w-full mb-10" data-carousel="static">
         <div class="relative h-96 overflow-hidden rounded-lg">
             @foreach ($newsList->take(3) as $news)
@@ -31,9 +54,11 @@
             </span>
         </button>
     </div>
+@endif
 
-    <!-- Branch News -->
-    <h2 class="text-2xl font-bold mb-6">News from {{ $branch->name }}</h2>
+<!-- Branch News -->
+<h2 class="text-2xl font-bold mb-6 mt-20">News from {{ $branch->name }}</h2>
+@if ($newsList->count() > 0)
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @foreach ($newsList as $news)
             <div class="bg-white rounded shadow-md overflow-hidden">
@@ -50,5 +75,9 @@
     <div class="mt-6">
         {{ $newsList->links() }}
     </div>
+@else
+    <p class="text-gray-600 mt-4">No news yet.</p>
+@endif
+
 </div>
 @endsection

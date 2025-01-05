@@ -15,6 +15,12 @@ export default {
             fontFamily: {
                 sans: ["Inter",'Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                primaryBg: '#F8FAFC',
+                secondaryBg: '#D9EAFD',
+                accent: '#BCCCDC',
+                text: '#9AA6B2',
+            },
         },
     },
     plugins: [require('flowbite/plugin'),],
