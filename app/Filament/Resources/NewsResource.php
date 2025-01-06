@@ -29,10 +29,7 @@ class NewsResource extends Resource
                 ->label('Branch')
                 ->relationship('branch', 'name')
                 ->searchable()
-                ->preload()
-                ->default(auth()->user()->branch_id) // Automatically select the user's branch
-                ->disabled(fn() => auth()->user()->role !== 'superadmin' && auth()->user()->role !== 'yayasan') // Disable for non-superadmin or yayasan
-                ->visible(fn() => auth()->user()->role === 'superadmin' || auth()->user()->role === 'yayasan' || auth()->user()->branch_id),
+                ->preload(),
             Forms\Components\TextInput::make('title')->required()->maxLength(255),
             Forms\Components\RichEditor::make('content')->required()->maxLength(65535),
             Forms\Components\FileUpload::make('image')->directory('news-images')->image()->maxSize(2048),

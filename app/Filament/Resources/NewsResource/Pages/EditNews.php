@@ -25,7 +25,7 @@ class EditNews extends EditRecord
         $user = auth()->user();
     
         // Superadmin and Yayasan have unrestricted access
-        if ($user->role === 'superadmin' || $user->role === 'yayasan') {
+        if ($user->role === 'superadmin' || $user->role === 'yayasan' || $user->role === 'kepala_sekolah' || $user->role === 'operator') {
             return true;
         }
     
