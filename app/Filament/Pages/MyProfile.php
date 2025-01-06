@@ -2,10 +2,11 @@
 
 namespace App\Filament\Pages;
 
-use Filament\Pages\Page;
 use Filament\Forms;
-use Illuminate\Support\Facades\Auth;
+use Filament\Pages\Page;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Filament\Notifications\Notification;
 
 class MyProfile extends Page
 {
@@ -54,7 +55,7 @@ class MyProfile extends Page
     public function save(): void
     {
         $user = Auth::user();
-
+    
         $data = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -64,10 +65,14 @@ class MyProfile extends Page
             ],
             'password' => ['nullable', 'min:8'],
         ]);
-
+    
         $user->update(array_filter($data)); // Only update non-null values
-
-        $this->notify('success', 'Profile updated successfully!');
+    
+        // Use Filament's Notification system
+        Notification::make()
+            ->title('Profile updated successfully!')
+            ->success()
+            ->send();
     }
 
     public static function shouldRegisterNavigation(): bool
