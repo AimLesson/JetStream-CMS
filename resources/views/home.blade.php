@@ -67,12 +67,14 @@
         @foreach ($newsList as $news)
             <div class="bg-white rounded shadow-md overflow-hidden">
                 <!-- News Image -->
-                <img src="{{ asset('storage/' . $news->image) }}: asset('images/default.jpg') }}" alt="{{ $news->title }}" class="w-full h-48 object-cover">
-                
+                <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}" 
+                alt="{{ $news->title }}" 
+                class="w-full h-48 object-cover">
+                           
                 <!-- News Content -->
                 <div class="p-4">
                     <h3 class="font-bold text-lg">{{ $news->title }}</h3>
-                    <p class="text-gray-600 text-sm">{{ $news->created_at->format('F j, Y') }}</p>
+                    <p class="text-gray-600 text-sm">{{ optional($news->created_at)->format('F j, Y') }}</p>
                     <p class="text-gray-700 mt-2 line-clamp-3">{{ Str::limit(strip_tags($news->content), 100, '...') }}</p>
                     <a href="{{ route('news.show', $news->id) }}" class="text-blue-500 hover:underline mt-4 block">Read More</a>
                 </div>
@@ -80,7 +82,7 @@
         @endforeach
     </div>
     <div class="mt-6">
-        {{ $newsList->links() }}
+        {{ $newsList->links('pagination::tailwind') }}
     </div>
 </div>
 
