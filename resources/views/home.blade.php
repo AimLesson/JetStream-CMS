@@ -40,8 +40,7 @@
 
 <section 
     class="relative bg-cover bg-center mt-10 border shadow" 
-    style="background-image: url('https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png');"
->
+    style="background-image: url('https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png');">
     <!-- Overlay for opacity -->
     <div class="absolute inset-0 bg-black opacity-50"></div>
 
@@ -81,9 +80,9 @@
             </div>
         @endforeach
     </div>
-    <div class="mt-6">
-        {{ $newsList->links('pagination::tailwind') }}
-    </div>
+        <div class="mt-6">
+            {{ $newsList->links('pagination::tailwind') }}
+        </div>
 </div>
 
 

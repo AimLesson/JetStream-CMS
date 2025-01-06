@@ -32,7 +32,7 @@
         <div class="relative h-96 overflow-hidden rounded-lg">
             @foreach ($newsList->take(3) as $news)
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('storage/' . $news->image) }}" class="block w-full h-full object-cover" alt="{{ $news->title }}">
+                    <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}"  alt="{{ $news->title }}">
                     <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold p-4">
                         {{ $news->title }}
                     </div>
@@ -62,10 +62,15 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @foreach ($newsList as $news)
             <div class="bg-white rounded shadow-md overflow-hidden">
-                <img src="{{ asset('storage/' . $news->image) }}" class="w-full h-48 object-cover" alt="{{ $news->title }}">
+                <!-- News Image -->
+                <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}" 
+                alt="{{ $news->title }}" 
+                class="w-full h-48 object-cover">
+                        
+                <!-- News Content -->
                 <div class="p-4">
                     <h3 class="font-bold text-lg">{{ $news->title }}</h3>
-                    <p class="text-gray-600 text-sm">{{ $news->created_at->format('F j, Y') }}</p>
+                    <p class="text-gray-600 text-sm">{{ optional($news->created_at)->format('F j, Y') }}</p>
                     <p class="text-gray-700 mt-2 line-clamp-3">{{ Str::limit(strip_tags($news->content), 100, '...') }}</p>
                     <a href="{{ route('news.show', $news->id) }}" class="text-blue-500 hover:underline mt-4 block">Read More</a>
                 </div>
@@ -73,7 +78,7 @@
         @endforeach
     </div>
     <div class="mt-6">
-        {{ $newsList->links() }}
+        {{ $newsList->links('pagination::tailwind') }}
     </div>
 @else
     <p class="text-gray-600 mt-4">No news yet.</p>
