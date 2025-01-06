@@ -10,7 +10,7 @@
     <div class="relative h-96 lg:h-[600px] overflow-hidden rounded-lg">
         @foreach ($latestNews as $index => $news)
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="{{ asset('storage/' . $news->image) }}" 
+                <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}" 
                      class="block w-full h-full object-cover" 
                      alt="{{ $news->title }}">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold p-4">
@@ -36,6 +36,7 @@
         </span>
     </button>
 </div>
+
 
 <section 
     class="relative bg-cover bg-center mt-10 border shadow" 
@@ -66,7 +67,7 @@
         @foreach ($newsList as $news)
             <div class="bg-white rounded shadow-md overflow-hidden">
                 <!-- News Image -->
-                <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}" class="w-full h-48 object-cover">
+                <img src="{{ asset('storage/' . $news->image) }}: asset('images/default.jpg') }}" alt="{{ $news->title }}" class="w-full h-48 object-cover">
                 
                 <!-- News Content -->
                 <div class="p-4">
