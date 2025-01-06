@@ -71,10 +71,12 @@
     <header class="bg-white shadow fixed top-0 left-0 w-full z-50">
         <div class="container mx-auto flex justify-between items-center px-4 py-4">
             <!-- Logo and Title -->
-            <div class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="{{ asset('storage/' . $profile->logo) }}" alt="Logo" class="h-10 w-auto rounded-full me-4">
-                <span class="self-center text-lg font-semibold whitespace-nowrap">{{ $profile->name }}</span>
-            </div>
+            <a href="{{ url('/') }}">
+                <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="{{ asset('storage/' . $profile->logo) }}" alt="Logo" class="h-10 w-auto rounded-full me-4">
+                    <span class="self-center text-lg font-semibold whitespace-nowrap">{{ $profile->name }}</span>
+                </div>
+            </a>
     
             <!-- Mobile Menu Button -->
             <button class="lg:hidden text-gray-800 hover:text-blue-500" id="mobile-menu-button">
@@ -117,7 +119,7 @@
                 <a href="{{ url('/about') }}" class="text-gray-800 hover:bg-gray-100">About</a>
                 <div>
                     <button class="flex items-center justify-between w-full px-4 py-2 text-gray-800 hover:bg-gray-100" id="mobile-branches-menu">
-                        Cabang
+                        Sekolah
                         <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>

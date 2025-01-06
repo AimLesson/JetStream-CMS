@@ -34,10 +34,12 @@
     <header class="bg-white shadow fixed top-0 left-0 w-full z-50">
         <div class="container mx-auto flex justify-between items-center px-4 py-4">
             <!-- Logo and Title -->
-            <div class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="{{ asset('storage/' . $branch->logo) }}" alt="Logo" class="h-10 w-10 rounded-full me-4">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap">{{ $branch->name }}</span>
-            </div>
+            <a href="{{ url('/') }}">
+                <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="{{ asset('storage/' . $branch->logo) }}" alt="Logo" class="h-10 w-10 rounded-full me-4">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap">{{ $branch->name }}</span>
+                </div>
+            </a>
 
             <!-- Navigation Links -->
             <nav class="flex space-x-4">
@@ -55,7 +57,7 @@
                     <button
                         class="text-gray-800 hover:text-blue-500 flex items-center {{ request()->is('branches*') ? 'text-blue-500 font-bold' : '' }}"
                         id="branches-menu">
-                        Cabang
+                        Sekolah
                         <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
