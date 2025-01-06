@@ -20,6 +20,11 @@ class BranchResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
     protected static ?int $navigationSort = 4; // First in the navigation
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Sekolah';
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema([
