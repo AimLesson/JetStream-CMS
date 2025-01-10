@@ -21,54 +21,28 @@
     {{-- SEKOLAH --}}
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
-        <!-- Section Header -->
-        <div class="flex flex-wrap w-full mb-20">
+          <div class="flex flex-wrap w-full mb-20">
             <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Sekolah Kami</h1>
-            <div class="h-1 w-20 bg-blue-500 rounded"></div>
+              <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Sekolah Kami</h1>
+              <div class="h-1 w-20 bg-blue-500 rounded"></div>
             </div>
-        </div>
-    
-        <!-- Carousel for Small Screens -->
-        <div class="swiper-container md:hidden">
-            <div class="swiper-wrapper">
+          </div>
+          <div class="flex flex-wrap -m-4">
             @foreach($branch as $b)
-            <div class="swiper-slide">
-                <div class="bg-gray-100 p-6 rounded-lg h-64 w-80 mx-auto">
+            <a href="{{ route('branches.show', $b->id) }}" class="xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full p-4"> <!-- Adjusted widths for 5 items per row -->
+              <div class="bg-gray-100 p-6 rounded-lg h-64 w-80 mx-auto">
                 <!-- Avatar Image -->
                 <img 
-                    class="h-40 w-40 rounded-full object-cover object-center mx-auto mb-6 border-4 border-gray-300" 
-                    src="{{ asset('storage/' . $b->logo) }}" 
-                    alt="content"
+                  class="h-40 w-40 rounded-full object-cover object-center mx-auto mb-6 border-4 border-gray-300" 
+                  src="{{ asset('storage/' . $b->logo) }}" 
+                  alt="content"
                 >
                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4 text-center">{{ $b->name }}</h2>
-                </div>
-            </div>
+                {{-- <p class="leading-relaxed text-base line-clamp-3">{!! $b->about !!}</p> --}}
+              </div>
+            </a>
             @endforeach
-            </div>
-            <!-- Navigation Buttons -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <!-- Pagination -->
-            <div class="swiper-pagination"></div>
-        </div>
-    
-        <!-- Grid for Larger Screens -->
-        <div class="hidden md:flex flex-wrap -m-4">
-            @foreach($branch as $b)
-            <div class="xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full p-4">
-            <div class="bg-gray-100 p-6 rounded-lg h-64 w-80 mx-auto">
-                <!-- Avatar Image -->
-                <img 
-                class="h-40 w-40 rounded-full object-cover object-center mx-auto mb-6 border-4 border-gray-300" 
-                src="{{ asset('storage/' . $b->logo) }}" 
-                alt="content"
-                >
-                <h2 class="text-lg text-gray-900 font-medium title-font mb-4 text-center">{{ $b->name }}</h2>
-            </div>
-            </div>
-            @endforeach
-        </div>
+          </div>
         </div>
     </section>
 
@@ -318,22 +292,7 @@
         </div>
     </section>
 
-    <!-- Swiper.js Integration -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-    const swiper = new Swiper('.swiper-container', {
-        loop: true,
-        slidesPerView: 1, // Show 1 slide at a time
-        navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        },
-    });
-    </script>
+
 
 
 @endsection
