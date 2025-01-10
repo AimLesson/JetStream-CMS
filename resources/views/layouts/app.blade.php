@@ -136,20 +136,6 @@
         </div>
     </header>
 
-    {{-- <header class="text-gray-600 body-font">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-            <img src="{{ asset('storage/' . $profile->logo) }}" alt="Logo" class="h-10 w-auto rounded-full me-4">
-            <span class="ml-3 text-xl">{{ $profile->name }}</span>
-          </a>
-          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a href="{{ url('/') }}" class="mr-5 hover:text-gray-900">Home</a>
-            <a href="{{ url('/about') }}" class="mr-5 hover:text-gray-900">About Us</a>
-            <a class="mr-5 hover:text-gray-900">Sekolah</a>
-          </nav>
-        </div>
-    </header> --}}
-
 
 
     <!-- Main Content -->
@@ -224,6 +210,8 @@
             });
         });
     </script>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
