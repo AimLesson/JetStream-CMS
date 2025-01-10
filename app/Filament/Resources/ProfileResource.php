@@ -46,8 +46,7 @@ class ProfileResource extends Resource
                 Forms\Components\FileUpload::make('background')
                     ->label('Gambar Latar')
                     ->directory('profile-bg')
-                    ->image()
-                    ->maxSize(2048),
+                    ->image(),
                 Forms\Components\FileUpload::make('banner1')
                     ->label('Gambar 1')
                     ->directory('profile-banner1')

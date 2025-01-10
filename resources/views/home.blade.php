@@ -5,8 +5,8 @@
 @section('content')
 
     {{-- Hero Section --}}
-    <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+    <section class="text-gray-600 body-font mt-20">
+        <div class="mx-auto flex px-5 py-6 md:flex-row flex-col items-center bg-white rounded-lg">
             <div
                 class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                 <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ $profile->name }}</h1>
@@ -20,17 +20,17 @@
 
     {{-- SEKOLAH --}}
     <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-          <div class="flex flex-wrap w-full mb-20">
-            <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+        <div class="container mt-10 px-5 py-6 mx-auto bg-white rounded-lg">
+          <div class="flex flex-wrap w-full mb-10">
+            <div class="lg:w-1/2 w-full mb-2 lg:mb-0">
               <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Sekolah Kami</h1>
               <div class="h-1 w-20 bg-blue-500 rounded"></div>
             </div>
           </div>
-          <div class="flex flex-wrap -m-4">
+          <div class="flex flex-wrap -mx-4 gap-12">
             @foreach($branch as $b)
-            <a href="{{ route('branches.show', $b->id) }}" class="xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full p-4"> <!-- Adjusted widths for 5 items per row -->
-              <div class="bg-gray-100 p-6 rounded-lg h-64 w-80 mx-auto">
+            <a href="{{ route('branches.show', $b->id) }}" class="xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full">
+              <div class="bg-gray-100 p-6 rounded-lg h-64 w-80 mx-auto border-b shadow">
                 <!-- Avatar Image -->
                 <img 
                   class="h-40 w-40 rounded-full object-cover object-center mx-auto mb-6 border-4 border-gray-300" 
@@ -38,22 +38,22 @@
                   alt="content"
                 >
                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4 text-center">{{ $b->name }}</h2>
-                {{-- <p class="leading-relaxed text-base line-clamp-3">{!! $b->about !!}</p> --}}
               </div>
             </a>
             @endforeach
           </div>
+          
         </div>
     </section>
 
     {{-- Berita --}}
     <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
+        <div class="container px-5 py-6 mt-10 mx-auto bg-white rounded-lg">
             <div class="flex flex-col">
                 <div class="h-1 bg-gray-200 rounded overflow-hidden">
                     <div class="w-24 h-full bg-blue-500"></div>
                 </div>
-                <div class="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
+                <div class="flex flex-wrap sm:flex-row flex-col py-6 ">
                     <h1 class="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">Berita Terbaru</h1>
                 </div>
             </div>
@@ -129,7 +129,7 @@
     </section>
 
     {{-- Personalia --}}
-    <section class="text-gray-600 body-font">
+    {{-- <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
                 <h1 class="text-2xl font-medium title-font mb-4 text-gray-900 tracking-widest">OUR TEAM</h1>
@@ -290,7 +290,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
 

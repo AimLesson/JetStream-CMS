@@ -64,7 +64,7 @@
 
 </head>
 
-<body class="font-sans px-4" style="background-image: url('{{ asset('storage/' . $profile->background) }}'); background-size: cover; background-position: center;">
+<body class="font-sans px-4" style="background-image: url('{{ asset('storage/' . $profile->background) }}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
 
     <!-- Navbar -->
     <header class="bg-white shadow fixed top-0 left-0 w-full z-50">
