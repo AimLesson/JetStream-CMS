@@ -30,11 +30,32 @@ class ProfileResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\RichEditor::make('company_profile')
-                    ->label('Company Profile')
+                    ->label('Deskripsi Singkat')
+                    ->nullable(),
+                Forms\Components\RichEditor::make('visi')
+                    ->label('Visi')
+                    ->nullable(),
+                Forms\Components\RichEditor::make('misi')
+                    ->label('Misi')
                     ->nullable(),
                 Forms\Components\FileUpload::make('logo')
                     ->label('Logo')
                     ->directory('profile-logos')
+                    ->image()
+                    ->maxSize(2048),
+                Forms\Components\FileUpload::make('background')
+                    ->label('Gambar Latar')
+                    ->directory('profile-bg')
+                    ->image()
+                    ->maxSize(2048),
+                Forms\Components\FileUpload::make('banner1')
+                    ->label('Gambar 1')
+                    ->directory('profile-banner1')
+                    ->image()
+                    ->maxSize(2048),
+                Forms\Components\FileUpload::make('banner2')
+                    ->label('Gambar 2')
+                    ->directory('profile-banner2')
                     ->image()
                     ->maxSize(2048),
                 Forms\Components\RichEditor::make('about')

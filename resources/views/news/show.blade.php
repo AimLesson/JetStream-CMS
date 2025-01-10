@@ -65,7 +65,7 @@
     @endif
 
     <!-- TikTok Embed -->
-    @if ($news->tiktok_link)
+    @if (!empty($news->tiktok_link))
         @php
             // Parse the TikTok URL to extract the video ID
             preg_match('/\/video\/(\d+)/', $news->tiktok_link, $matches);
@@ -75,12 +75,15 @@
         @if ($tiktokVideoId)
             <div class="mt-6">
                 <h3 class="text-lg font-bold mb-2">Watch on TikTok</h3>
-                <blockquote class="tiktok-embed">
-                    <iframe class="w-auto h-auto rounded"
-                            src="https://www.tiktok.com/embed/v2/{{ $tiktokVideoId }}"
-                            frameborder="0"
-                            allowfullscreen>
-                    </iframe>
+                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/video/{{ $tiktokVideoId }}" data-video-id="{{ $tiktokVideoId }}" style="max-width: 605px; min-width: 325px;">
+                    <iframe 
+                    class="w-full rounded"
+                    src="https://www.tiktok.com/embed/v2/{{ $tiktokVideoId }}"
+                    frameborder="0"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"
+                    allowfullscreen>
+                </iframe>
+                
                 </blockquote>
                 <script async src="https://www.tiktok.com/embed.js"></script>
             </div>
