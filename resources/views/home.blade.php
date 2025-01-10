@@ -28,11 +28,11 @@
           </div>
           <div class="flex flex-wrap -m-4">
             @foreach($branch as $b)
-            <div class="xl:w-1/4 md:w-1/2 p-4">
+            <div class="xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full p-4"> <!-- Adjusted widths for 5 items per row -->
               <div class="bg-gray-100 p-6 rounded-lg h-64 w-80 mx-auto">
                 <!-- Avatar Image -->
                 <img 
-                  class="h-64 w-64 rounded-full object-cover object-center mx-auto mb-6 border-4 border-gray-300" 
+                  class="h-40 w-40 rounded-full object-cover object-center mx-auto mb-6 border-4 border-gray-300" 
                   src="{{ asset('storage/' . $b->logo) }}" 
                   alt="content"
                 >
@@ -42,6 +42,7 @@
             </div>
             @endforeach
           </div>
+          
           
           
         </div>
