@@ -27,7 +27,7 @@
               <div class="h-1 w-20 bg-blue-500 rounded"></div>
             </div>
           </div>
-          <div class="flex flex-wrap -mx-4 gap-12">
+          <div class="flex flex-wrap -m-4">
             @foreach($branch as $b)
             <a href="{{ route('branches.show', $b->id) }}" class="xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full">
               <div class="bg-gray-100 p-6 rounded-lg h-64 w-80 mx-auto border-b shadow">
