@@ -143,8 +143,8 @@
         @yield('content')
     </main>
 
-    <footer class="text-gray-600 body-font bg-white shadow">
-        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <footer class="text-gray-600 body-font">
+        <div class="container px-5 py-2 mb-4 mx-auto flex items-center sm:flex-row flex-col bg-white shadow rounded-xl">
           <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <img src="{{ asset('storage/' . $profile->logo) }}" alt="Logo" class="h-10 w-auto rounded-full me-4">
             <span class="ml-3 text-xl">{{ $profile->name }}</span>
