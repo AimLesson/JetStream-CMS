@@ -47,86 +47,70 @@
 
 
     {{-- Berita --}}
-    <section class="text-gray-600 body-font">
+    <section id="berita" class="text-gray-600 body-font">
         <div class="container px-5 py-6 mt-10 mx-auto bg-white rounded-lg">
             <div class="flex flex-col">
                 <div class="h-1 bg-gray-200 rounded overflow-hidden">
                     <div class="w-24 h-full bg-blue-500"></div>
                 </div>
-                <div class="flex flex-wrap sm:flex-row flex-col py-6 ">
+                <div class="flex flex-wrap sm:flex-row flex-col py-6">
                     <h1 class="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">Berita Terbaru</h1>
                 </div>
             </div>
-                <!-- Carousel -->
-                <div id="carouselExample" class="relative w-full mb-4" data-carousel="static">
-                    <!-- Carousel Wrapper -->
-                    <div class="relative h-96 lg:h-[600px] overflow-hidden rounded-lg">
-                        @foreach ($latestNews as $index => $news)
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}"
-                                    class="block w-full h-full object-cover" alt="{{ $news->title }}">
-                                <div
-                                    class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold p-4">
-                                    {{ $news->title }}
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
 
-                    <!-- Carousel Controls -->
-                    <button type="button"
-                        class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                        data-carousel-prev>
-                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50">
-                            <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 6 10" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
-                            </svg>
-                        </span>
-                    </button>
-                    <button type="button"
-                        class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                        data-carousel-next>
-                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50">
-                            <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 6 10" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4-4 4" />
-                            </svg>
-                        </span>
-                    </button>
+            <!-- Carousel -->
+            <div id="carouselExample" class="relative w-full mb-4" data-carousel="static">
+                <!-- Carousel Wrapper -->
+                <div class="relative h-96 lg:h-[600px] overflow-hidden rounded-lg">
+                    @foreach ($latestNews as $index => $news)
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}"
+                                class="block w-full h-full object-cover" alt="{{ $news->title }}">
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold p-4">
+                                {{ $news->title }}
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-            <div class="flex flex-wrap -m-4">
-                @foreach ($newsList as $news)
-                    <div class="p-4 md:w-1/3">
-                        <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                            <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                                src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}"
-                                alt="blog">
-                            <div class="p-6">
-                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                                    {{ optional($news->created_at)->format('F j, Y') }}</h2>
-                                <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ $news->title }}</h1>
-                                <p class="leading-relaxed mb-3">{{ Str::limit(strip_tags($news->content), 100, '...') }}</p>
-                                <div class="flex items-center flex-wrap ">
-                                    <a href="{{ route('news.show', $news->id) }}"
-                                        class="text-blue-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
-                                        <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M5 12h14"></path>
-                                            <path d="M12 5l7 7-7 7"></path>
-                                        </svg>
-                                    </a>
+            </div>
+
+            <!-- Dynamic News Content -->
+            <div id="news-content">
+                <div class="flex flex-wrap -m-4">
+                    @foreach ($newsList as $news)
+                        <div class="p-4 md:w-1/3">
+                            <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                                <img class="lg:h-48 md:h-36 w-full object-cover object-center"
+                                    src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}"
+                                    alt="blog">
+                                <div class="p-6">
+                                    <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                                        {{ optional($news->created_at)->format('F j, Y') }}</h2>
+                                    <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ $news->title }}</h1>
+                                    <p class="leading-relaxed mb-3">{{ Str::limit(strip_tags($news->content), 100, '...') }}</p>
+                                    <div class="flex items-center flex-wrap">
+                                        <a href="{{ route('news.show', $news->id) }}"
+                                            class="text-blue-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
+                                            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14"></path>
+                                                <path d="M12 5l7 7-7 7"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-            <div class="mt-6">
-                {{ $newsList->links('pagination::tailwind') }}
+                    @endforeach
+                </div>
+                <div class="mt-6">
+                    {{ $newsList->links('pagination::tailwind') }}
+                </div>
             </div>
         </div>
     </section>
+
 
     {{-- Personalia --}}
     {{-- <section class="text-gray-600 body-font">
@@ -292,7 +276,38 @@
         </div>
     </section> --}}
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const newsContent = document.getElementById('news-content');
 
+        if (newsContent) {
+            // Delegate click event for pagination links
+            document.addEventListener('click', function (e) {
+                if (e.target.closest('.pagination a')) {
+                    e.preventDefault();
+                    const url = e.target.closest('.pagination a').getAttribute('href');
+                    fetchNewsContent(url);
+                }
+            });
+
+            function fetchNewsContent(url) {
+                fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        newsContent.innerHTML = data;
+                        // Scroll to the berita section
+                        document.getElementById('berita').scrollIntoView({ behavior: 'smooth' });
+                    })
+                    .catch(error => console.error('Error fetching news content:', error));
+            }
+        }
+    });
+
+    </script>
 
 
 @endsection
