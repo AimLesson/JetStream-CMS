@@ -5,122 +5,157 @@
 @section('content')
 
     {{-- Hero Section --}}
-    <section class="text-gray-600 body-font mt-20">
-        <div class="mx-auto flex px-5 py-6 md:flex-row flex-col items-center bg-white rounded-lg">
-            <div
-                class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ $profile->name }}</h1>
-                <p class="mb-8 leading-relaxed text-justify">{!! $profile->about !!}</p>
+    <section class="mx-auto max-w-screen-12xl px-4 md:px-8 bg-black/50 py-4">
+        <div class="mb-8 flex flex-wrap justify-between md:mb-16">
+            <div class="mb-6 flex w-full flex-col justify-center sm:mb-12 lg:mb-0 lg:w-1/3 lg:pb-24 lg:pt-48">
+                <h1 class="mb-4 text-4xl font-bold text-white sm:text-5xl md:mb-8 md:text-6xl">{{ $profile->name }}</h1>
+
+                <p class="max-w-md leading-relaxed text-gray-100 xl:text-lg">{{ $profile->company_profile }}</p>
             </div>
-            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-                <img class="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600">
+
+            <div class="mb-12 flex w-full md:mb-16 lg:w-2/3">
+                <div
+                    class="relative left-12 top-12 z-10 -ml-12 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:left-16 md:top-16 lg:ml-0">
+                    <img src="{{ asset('storage/' . $profile->banner1) }}"
+                        loading="lazy" alt="Photo by Kaung Htet" class="h-full w-full object-cover object-center" />
+                </div>
+
+                <div class="overflow-hidden rounded-lg bg-gray-100 shadow-lg">
+                    <img src="{{ asset('storage/' . $profile->banner2) }}"
+                        loading="lazy" alt="Photo by Manny Moreno" class="h-full w-full object-cover object-center" />
+                </div>
             </div>
         </div>
     </section>
 
-    {{-- SEKOLAH --}}
-    <section class="text-gray-600 body-font">
-        <div class="container mt-10 px-5 py-6 mx-auto bg-white rounded-lg">
-            <div class="flex flex-wrap w-full mb-10">
-                <div class="lg:w-1/2 w-full mb-2 lg:mb-0">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Sekolah Kami</h1>
-                    <div class="h-1 w-20 bg-blue-500 rounded"></div>
-                </div>
+    {{-- VISI --}}
+    <div class="bg-black/50 py-6 sm:py-8 lg:py-12">
+        <div class="mx-auto max-w-screen-12xl px-4 md:px-8">
+            <div class="h-1 bg-gray-200 rounded overflow-hidden mb-10">
+                <div class="w-24 h-full bg-blue-500"></div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                @foreach($branch as $b)
-                <a href="{{ route('branches.show', $b->id) }}" class="block">
-                    <div class="bg-gray-100 p-6 rounded-lg h-64 w-full mx-auto border-b shadow">
-                        <!-- Avatar Image -->
-                        <img 
-                            class="h-40 w-40 rounded-full object-cover object-center mx-auto mb-6 border-4 border-gray-300" 
-                            src="{{ asset('storage/' . $b->logo) }}" 
-                            alt="content"
-                        >
-                        <h2 class="text-lg text-gray-900 font-medium title-font mb-4 text-center">{{ $b->name }}</h2>
+          <h2 class="mb-4 text-center text-3xl font-extrabold text-indigo-400 md:mb-6 lg:text-3xl">VISI</h2>      
+            <p class="mx-auto max-w-screen-md text-center font-bold text-gray-50 md:text-xl">
+            {!! str_replace(['<p>', '</p>'], '', $profile->visi) !!}
+            </p>
+        </div>
+    </div>
+
+    {{-- MISI --}}
+    <div class="bg-black/50 py-6 sm:py-8 lg:py-12">
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+            <h2 class="mb-4 text-center text-3xl font-extrabold text-indigo-400 md:mb-6 lg:text-3xl">MISI</h2>      
+            <div class="mx-auto max-w-screen-lg font-bold text-center text-gray-50 md:text-lg">
+                {!! $profile->misi !!}
+            </div>            
+        </div>
+    </div>
+
+    {{-- Stat --}}
+    <div class="bg-black/50 py-6 sm:py-8 lg:py-12">
+        <div class="mx-auto max-w-screen-12xl px-4 md:px-8">
+            <div class="h-1 bg-gray-200 rounded overflow-hidden mb-10">
+                <div class="w-24 h-full bg-blue-500"></div>
+            </div>
+            <!-- text - start -->
+            <div class="mb-10 md:mb-16">
+                <h2 class="mb-4 text-center text-2xl font-bold text-gray-50 md:mb-6 lg:text-3xl">Our Team by the numbers
+                </h2>
+
+                <p class="mx-auto max-w-screen-md text-center text-gray-50 md:text-lg">This is a section of some simple
+                    filler text, also known as placeholder text. It shares some characteristics of a real written text but
+                    is random or otherwise generated.</p>
+            </div>
+            <!-- text - end -->
+
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-3 md:gap-0 md:divide-x">
+                <!-- stat - start -->
+                <div class="flex flex-col items-center md:p-4">
+                    <div class="text-xl font-bold text-indigo-400 sm:text-2xl md:text-3xl">200</div>
+                    <div class="text-sm font-semibold sm:text-base text-gray-50">Sekolah</div>
+                </div>
+                <!-- stat - end -->
+
+                <!-- stat - start -->
+                <div class="flex flex-col items-center md:p-4">
+                    <div class="text-xl font-bold text-indigo-400 sm:text-2xl md:text-3xl">500+</div>
+                    <div class="text-sm font-semibold sm:text-base text-gray-50">Siswa</div>
+                </div>
+
+                <!-- stat - start -->
+                <div class="flex flex-col items-center md:p-4">
+                    <div class="text-xl font-bold text-indigo-400 sm:text-2xl md:text-3xl">1000+</div>
+                    <div class="text-sm font-semibold sm:text-base text-gray-50">Tahun Pengabdian</div>
+                </div>
+                <!-- stat - end -->
+            </div>
+        </div>
+    </div>
+
+    {{-- SEKOLAH --}}
+    <div class="bg-black/50 py-6 sm:py-8 lg:py-12">
+        <div class="mx-auto max-w-screen-12xl px-4 md:px-8">
+            <div class="h-1 bg-gray-200 rounded overflow-hidden">
+                <div class="w-24 h-full bg-blue-500"></div>
+            </div>
+            <div class="mb-6 flex items-end justify-between gap-4 mt-4">
+                <h2 class="text-2xl font-bold text-gray-50 lg:text-3xl">Sekolah Kami</h2>
+            </div>
+
+            <div class="grid gap-x-4 gap-y-6 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-4 xl:grid-cols-5">
+                @foreach ($branch as $b)
+                    <div>
+                        <a href="{{ route('branches.show', $b->id) }}"
+                            class="group mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
+                            <img src="{{ asset('storage/' . $b->logo) }}" loading="lazy" alt="Photo by Austin Wade"
+                                class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                        </a>
+
+                        <div class="flex flex-col">
+                            <a href="{{ route('branches.show', $b->id) }}"
+                                class="text-lg font-bold text-gray-100 transition duration-100 hover:text-gray-500 lg:text-xl">{{ $b->name }}</a>
+                        </div>
                     </div>
-                </a>
                 @endforeach
             </div>
         </div>
-    </section>
+    </div>
 
-
-    {{-- Berita --}}
+    {{-- Agenda --}}
     <section class="text-gray-600 body-font">
-        <div class="container px-5 py-6 mt-10 mx-auto bg-white rounded-lg">
+        <div class="px-5 py-6 bg-black/50">
             <div class="flex flex-col">
                 <div class="h-1 bg-gray-200 rounded overflow-hidden">
                     <div class="w-24 h-full bg-blue-500"></div>
                 </div>
                 <div class="flex flex-wrap sm:flex-row flex-col py-6 ">
-                    <h1 class="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">Berita Terbaru</h1>
+                    <h1 class="sm:w-2/5 text-gray-50 font-medium title-font text-2xl mb-2 sm:mb-0">Agenda Mendatang</h1>
                 </div>
             </div>
-                <!-- Carousel -->
-                <div id="carouselExample" class="relative w-full mb-4" data-carousel="static">
-                    <!-- Carousel Wrapper -->
-                    <div class="relative h-96 lg:h-[600px] overflow-hidden rounded-lg">
-                        @foreach ($latestNews as $index => $news)
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}"
-                                    class="block w-full h-full object-cover" alt="{{ $news->title }}">
-                                <div
-                                    class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold p-4">
-                                    {{ $news->title }}
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <!-- Carousel Controls -->
-                    <button type="button"
-                        class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                        data-carousel-prev>
-                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50">
-                            <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 6 10" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
-                            </svg>
-                        </span>
-                    </button>
-                    <button type="button"
-                        class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                        data-carousel-next>
-                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50">
-                            <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 6 10" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4-4 4" />
-                            </svg>
-                        </span>
-                    </button>
-                </div>
-            <div class="flex flex-wrap -m-4">
+            <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
+                <!-- article - start -->
                 @foreach ($newsList as $news)
-                    <div class="p-4 md:w-1/3">
-                        <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                            <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                                src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}"
-                                alt="blog">
-                            <div class="p-6">
-                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                                    {{ optional($news->created_at)->format('F j, Y') }}</h2>
-                                <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ $news->title }}</h1>
-                                <p class="leading-relaxed mb-3">{{ Str::limit(strip_tags($news->content), 100, '...') }}</p>
-                                <div class="flex items-center flex-wrap ">
-                                    <a href="{{ route('news.show', $news->id) }}"
-                                        class="text-blue-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
-                                        <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M5 12h14"></path>
-                                            <path d="M12 5l7 7-7 7"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
+                    <a href="{{ route('news.show', $news->id) }}"
+                        class="group relative flex h-48 flex-col overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-64 xl:h-96">
+                        <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}"
+                            loading="lazy" alt="Photo by Minh Pham"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent md:via-transparent">
                         </div>
-                    </div>
+
+                        <div class="relative mt-auto p-4">
+                            <span
+                                class="block text-sm text-gray-200">{{ optional($news->created_at)->format('F j, Y') }}</span>
+                            <h2 class="mb-2 text-xl font-semibold text-white transition duration-100">{{ $news->title }}
+                            </h2>
+
+                            <span class="font-semibold text-indigo-300">Read more</span>
+                        </div>
+                    </a>
                 @endforeach
+                <!-- article - end -->
             </div>
             <div class="mt-6">
                 {{ $newsList->links('pagination::tailwind') }}
@@ -128,192 +163,335 @@
         </div>
     </section>
 
-    {{-- Feedback --}}
-    <section class="text-gray-600 body-font relative mt-6">
-        <div class="absolute inset-0 bg-gray-300">
-          <iframe width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d247.27533113270667!2d109.23224479776741!3d-7.420317738581961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1syayasan%20pius!5e0!3m2!1sid!2sid!4v1736510427401!5m2!1sid!2sid" style="filter: grayscale(1) contrast(1.2) opacity(0.4);"></iframe>
-        </div>
-        <div class="container px-5 py-24 mx-auto flex">
-          <div class="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
-            <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Feedback</h2>
-            <div class="relative mb-4">
-              <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
-              <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+    {{-- Berita --}}
+    <section class="text-gray-600 body-font">
+        <div class="px-5 py-6 bg-black/50">
+            <div class="flex flex-col">
+                <div class="h-1 bg-gray-200 rounded overflow-hidden">
+                    <div class="w-24 h-full bg-blue-500"></div>
+                </div>
+                <div class="flex flex-wrap sm:flex-row flex-col py-6 ">
+                    <h1 class="sm:w-2/5 text-gray-50 font-medium title-font text-2xl mb-2 sm:mb-0">Berita Terbaru</h1>
+                </div>
             </div>
-            <div class="relative mb-4">
-              <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
-              <textarea id="message" name="message" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+            <!-- Carousel -->
+            <div id="carouselExample" class="relative w-full mb-4" data-carousel="static">
+                <!-- Carousel Wrapper -->
+                <div class="relative h-96 lg:h-[600px] overflow-hidden rounded-lg">
+                    @foreach ($latestNews as $index => $news)
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}"
+                                class="block w-full h-full object-cover" alt="{{ $news->title }}">
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold p-4">
+                                {{ $news->title }}
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Carousel Controls -->
+                <button type="button"
+                    class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-prev>
+                    <span
+                        class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50">
+                        <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 6 10" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+                        </svg>
+                    </span>
+                </button>
+                <button type="button"
+                    class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-next>
+                    <span
+                        class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50">
+                        <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 6 10" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l4 4-4 4" />
+                        </svg>
+                    </span>
+                </button>
             </div>
-            <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
-          </div>
+            <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
+                <!-- article - start -->
+                @foreach ($newsList as $news)
+                    <a href="{{ route('news.show', $news->id) }}"
+                        class="group relative flex h-48 flex-col overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-64 xl:h-96">
+                        <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default.jpg') }}"
+                            loading="lazy" alt="Photo by Minh Pham"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent md:via-transparent">
+                        </div>
+
+                        <div class="relative mt-auto p-4">
+                            <span
+                                class="block text-sm text-gray-200">{{ optional($news->created_at)->format('F j, Y') }}</span>
+                            <h2 class="mb-2 text-xl font-semibold text-white transition duration-100">{{ $news->title }}
+                            </h2>
+
+                            <span class="font-semibold text-indigo-300">Read more</span>
+                        </div>
+                    </a>
+                @endforeach
+                <!-- article - end -->
+            </div>
+            <div class="mt-6">
+                {{ $newsList->links('pagination::tailwind') }}
+            </div>
         </div>
     </section>
 
     {{-- Personalia --}}
-    {{-- <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-            <div class="flex flex-col text-center w-full mb-20">
-                <h1 class="text-2xl font-medium title-font mb-4 text-gray-900 tracking-widest">OUR TEAM</h1>
-                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn
-                    asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
+    <div class="bg-white py-6 sm:py-8 lg:py-12">
+        <div class="mx-auto max-w-screen-xl px-4 md:px-8">
+            <!-- text - start -->
+            <div class="mb-10 md:mb-16">
+                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Meet our Team</h2>
+
+                <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">This is a section of some simple
+                    filler text, also known as placeholder text. It shares some characteristics of a real written text but
+                    is random or otherwise generated.</p>
             </div>
-            <div class="flex flex-wrap -m-4">
-                <div class="p-4 lg:w-1/2">
-                    <div
-                        class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                        <img alt="team"
-                            class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
-                            src="https://dummyimage.com/200x200">
-                        <div class="flex-grow sm:pl-8">
-                            <h2 class="title-font font-medium text-lg text-gray-900">Holden Caulfield</h2>
-                            <h3 class="text-gray-500 mb-3">UI Developer</h3>
-                            <p class="mb-4">DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p>
-                            <span class="inline-flex">
-                                <a class="text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                                    </svg>
-                                </a>
-                                <a class="ml-2 text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <!-- text - end -->
+
+            <div class="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
+                <!-- person - start -->
+                <div>
+                    <div class="mb-2 h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg sm:mb-4 sm:h-60 md:h-80">
+                        <img src="https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=500"
+                            loading="lazy" alt="Photo by Radu Florin" class="h-full w-full object-cover object-center" />
+                    </div>
+
+                    <div>
+                        <div class="font-bold text-indigo-500 md:text-lg">John McCulling</div>
+                        <p class="mb-3 text-sm text-gray-500 md:mb-4 md:text-base">Founder / CEO</p>
+
+                        <!-- social - start -->
+                        <div class="flex">
+                            <div class="flex gap-4">
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
-                                        </path>
+                                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                                     </svg>
                                 </a>
-                                <a class="ml-2 text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
-                                        </path>
+                                            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                                     </svg>
                                 </a>
-                            </span>
+                            </div>
                         </div>
+                        <!-- social - end -->
                     </div>
                 </div>
-                <div class="p-4 lg:w-1/2">
-                    <div
-                        class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                        <img alt="team"
-                            class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
-                            src="https://dummyimage.com/201x201">
-                        <div class="flex-grow sm:pl-8">
-                            <h2 class="title-font font-medium text-lg text-gray-900">Alper Kamu</h2>
-                            <h3 class="text-gray-500 mb-3">Designer</h3>
-                            <p class="mb-4">DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.
-                            </p>
-                            <span class="inline-flex">
-                                <a class="text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                                    </svg>
-                                </a>
-                                <a class="ml-2 text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <!-- person - end -->
+
+                <!-- person - start -->
+                <div>
+                    <div class="mb-2 h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg sm:mb-4 sm:h-60 md:h-80">
+                        <img src="https://images.unsplash.com/photo-1532073150508-0c1df022bdd1?auto=format&q=75&fit=crop&w=500"
+                            loading="lazy" alt="Photo by christian ferrer"
+                            class="h-full w-full object-cover object-center" />
+                    </div>
+
+                    <div>
+                        <div class="font-bold text-indigo-500 md:text-lg">Kate Berg</div>
+                        <p class="mb-3 text-sm text-gray-500 md:mb-4 md:text-base">CFO</p>
+
+                        <!-- social - start -->
+                        <div class="flex">
+                            <div class="flex gap-4">
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
-                                        </path>
+                                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                                     </svg>
                                 </a>
-                                <a class="ml-2 text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
-                                        </path>
+                                            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                                     </svg>
                                 </a>
-                            </span>
+                            </div>
                         </div>
+                        <!-- social - end -->
                     </div>
                 </div>
-                <div class="p-4 lg:w-1/2">
-                    <div
-                        class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                        <img alt="team"
-                            class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
-                            src="https://dummyimage.com/204x204">
-                        <div class="flex-grow sm:pl-8">
-                            <h2 class="title-font font-medium text-lg text-gray-900">Atticus Finch</h2>
-                            <h3 class="text-gray-500 mb-3">UI Developer</h3>
-                            <p class="mb-4">DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.
-                            </p>
-                            <span class="inline-flex">
-                                <a class="text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                                    </svg>
-                                </a>
-                                <a class="ml-2 text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <!-- person - end -->
+
+                <!-- person - start -->
+                <div>
+                    <div class="mb-2 h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg sm:mb-4 sm:h-60 md:h-80">
+                        <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&q=75&fit=crop&w=500"
+                            loading="lazy" alt="Photo by Ayo Ogunseinde"
+                            class="h-full w-full object-cover object-center" />
+                    </div>
+
+                    <div>
+                        <div class="font-bold text-indigo-500 md:text-lg">Greg Jackson</div>
+                        <p class="mb-3 text-sm text-gray-500 md:mb-4 md:text-base">CTO</p>
+
+                        <!-- social - start -->
+                        <div class="flex">
+                            <div class="flex gap-4">
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
-                                        </path>
+                                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                                     </svg>
                                 </a>
-                                <a class="ml-2 text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
-                                        </path>
+                                            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                                     </svg>
                                 </a>
-                            </span>
+                            </div>
                         </div>
+                        <!-- social - end -->
                     </div>
                 </div>
-                <div class="p-4 lg:w-1/2">
-                    <div
-                        class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                        <img alt="team"
-                            class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
-                            src="https://dummyimage.com/206x206">
-                        <div class="flex-grow sm:pl-8">
-                            <h2 class="title-font font-medium text-lg text-gray-900">Henry Letham</h2>
-                            <h3 class="text-gray-500 mb-3">Designer</h3>
-                            <p class="mb-4">DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.
-                            </p>
-                            <span class="inline-flex">
-                                <a class="text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                                    </svg>
-                                </a>
-                                <a class="ml-2 text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <!-- person - end -->
+
+                <!-- person - start -->
+                <div>
+                    <div class="mb-2 h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg sm:mb-4 sm:h-60 md:h-80">
+                        <img src="https://images.unsplash.com/photo-1529068755536-a5ade0dcb4e8?auto=format&q=75&fit=crop&w=500"
+                            loading="lazy" alt="Photo by Midas Hofstra"
+                            class="h-full w-full object-cover object-center" />
+                    </div>
+
+                    <div>
+                        <div class="font-bold text-indigo-500 md:text-lg">Robert Greyson</div>
+                        <p class="mb-3 text-sm text-gray-500 md:mb-4 md:text-base">Creative Director</p>
+
+                        <!-- social - start -->
+                        <div class="flex">
+                            <div class="flex gap-4">
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
-                                        </path>
+                                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                                     </svg>
                                 </a>
-                                <a class="ml-2 text-gray-500">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
-                                        </path>
+                                            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                                     </svg>
                                 </a>
-                            </span>
+                            </div>
                         </div>
+                        <!-- social - end -->
                     </div>
                 </div>
+                <!-- person - end -->
+
+                <!-- person - start -->
+                <div>
+                    <div class="mb-2 h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg sm:mb-4 sm:h-60 md:h-80">
+                        <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&q=75&fit=crop&w=500"
+                            loading="lazy" alt="Photo by Elizeu Dias" class="h-full w-full object-cover object-center" />
+                    </div>
+
+                    <div>
+                        <div class="font-bold text-indigo-500 md:text-lg">John Roberts</div>
+                        <p class="mb-3 text-sm text-gray-500 md:mb-4 md:text-base">Investor Relations</p>
+
+                        <!-- social - start -->
+                        <div class="flex">
+                            <div class="flex gap-4">
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                    </svg>
+                                </a>
+
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- social - end -->
+                    </div>
+                </div>
+                <!-- person - end -->
+
+                <!-- person - start -->
+                <div>
+                    <div class="mb-2 h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg sm:mb-4 sm:h-60 md:h-80">
+                        <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&q=75&fit=crop&w=500"
+                            loading="lazy" alt="Photo by Matheus Ferrero"
+                            class="h-full w-full object-cover object-center" />
+                    </div>
+
+                    <div>
+                        <div class="font-bold text-indigo-500 md:text-lg">Judy Amandez</div>
+                        <p class="mb-3 text-sm text-gray-500 md:mb-4 md:text-base">Senior Art Director</p>
+
+                        <!-- social - start -->
+                        <div class="flex">
+                            <div class="flex gap-4">
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                    </svg>
+                                </a>
+
+                                <a href="#" target="_blank"
+                                    class="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+                                    <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- social - end -->
+                    </div>
+                </div>
+                <!-- person - end -->
             </div>
         </div>
-    </section> --}}
-
-
-
+    </div>
 
 @endsection

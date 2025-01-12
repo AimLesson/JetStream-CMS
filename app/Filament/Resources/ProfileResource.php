@@ -29,7 +29,7 @@ class ProfileResource extends Resource
                     ->label('Name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\RichEditor::make('company_profile')
+                Forms\Components\Textarea::make('company_profile')
                     ->label('Deskripsi Singkat')
                     ->nullable(),
                 Forms\Components\RichEditor::make('visi')
