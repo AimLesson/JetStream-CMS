@@ -13,7 +13,7 @@ class HomeController extends Controller
         $profile = Profile::first(); // Get the profile data
         $branch = Branch::all();
         $latestNews = News::where('is_published', true)->orderBy('created_at', 'desc')->take(5)->get();
-        $newsList = News::where('is_published', true)->orderBy('created_at', 'desc')->paginate(3);
+        $newsList = News::where('is_published', true)->orderBy('created_at', 'desc')->paginate(4);
 
         return view('home', compact('profile', 'latestNews', 'newsList', 'branch'));
     }
