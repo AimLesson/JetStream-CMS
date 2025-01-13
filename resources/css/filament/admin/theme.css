@@ -2,10 +2,10 @@
 
 @config 'tailwind.config.js';
 
-.fi-body {
+/* .fi-body {
     background: url('/images/background.png') no-repeat center center fixed;
     background-size: cover;
-}
+} */
 
 .fi-sidebar {
     @apply bg-black/50;
