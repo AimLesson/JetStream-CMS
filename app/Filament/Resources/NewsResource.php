@@ -35,8 +35,8 @@ class NewsResource extends Resource
             Forms\Components\FileUpload::make('image')->directory('news-images')->image()->maxSize(2048),
             Forms\Components\TextInput::make('author')->nullable()->maxLength(255),
             Forms\Components\TextInput::make('youtube_link')->label('YouTube Link')->url()->placeholder('https://www.youtube.com/watch?v=...')->nullable(),
-            Forms\Components\TextInput::make('instagram_link')->label('Instagram Link')->url()->placeholder('https://www.instagram.com/p/...')->nullable(),
-            Forms\Components\TextInput::make('tiktok_link')->label('TikTok Link')->url()->placeholder('https://www.tiktok.com/@username/video/...')->nullable(),
+            // Forms\Components\TextInput::make('instagram_link')->label('Instagram Link')->url()->placeholder('https://www.instagram.com/p/...')->nullable(),
+            // Forms\Components\TextInput::make('tiktok_link')->label('TikTok Link')->url()->placeholder('https://www.tiktok.com/@username/video/...')->nullable(),
             Forms\Components\Toggle::make('is_published')->label('Published')->default(false)->visible(fn() => auth()->user()->role === 'superadmin' || auth()->user()->role === 'yayasan' || auth()->user()->role === 'kepala_sekolah'), // Only superadmin or yayasan can see this field
         ]);
     }
