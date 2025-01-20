@@ -14,8 +14,11 @@ class BranchController extends Controller
                         ->where('is_published', true)
                         ->orderBy('created_at', 'desc')
                         ->paginate(6); // Fetch branch-specific published news
+        $latestNews = News::where('is_published', true)->orderBy('created_at', 'desc')->take(5)->get();
+        $gallery = News::where('branch_id',$id)->where('is_published', true)->orderBy('created_at', 'desc')->paginate(10);
 
-        return view('branches.show', compact('branch', 'newsList'));
+
+        return view('branches.show', compact('branch', 'newsList', 'latestNews','gallery'));
     }
 
     public function about($id)

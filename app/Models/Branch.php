@@ -19,5 +19,7 @@ class Branch extends Model
         'profile_bg',
         'profile_banner1',
         'profile_banner2',
+        'visi',
+        'misi',
     ];
 }

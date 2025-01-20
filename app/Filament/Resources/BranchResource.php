@@ -43,6 +43,12 @@ class BranchResource extends Resource
                 ->label('Gambar 2')
                 ->directory('profile-banner2')
                 ->image(),
+            Forms\Components\RichEditor::make('visi')
+                ->label('Visi')
+                ->nullable(),
+            Forms\Components\RichEditor::make('misi')
+                ->label('Misi')
+                ->nullable(),
             Forms\Components\RichEditor::make('company_profile')
                 ->maxLength(65535)
                 ->toolbarButtons(['bold', 'italic', 'strike', 'link', 'orderedList', 'unorderedList', 'heading', 'blockquote', 'codeBlock']),
