@@ -31,15 +31,15 @@ class BranchResource extends Resource
             Forms\Components\TextInput::make('name')->required()->maxLength(255),
             Forms\Components\TextInput::make('phone')->tel()->maxLength(15),
             Forms\Components\FileUpload::make('logo')->directory('logos')->image()->maxSize(2048),
-            Forms\Components\FileUpload::make('profile')
+            Forms\Components\FileUpload::make('profile_bg')
                 ->label('Gambar Latar')
                 ->directory('profile-bg')
                 ->image(),
-            Forms\Components\FileUpload::make('profile-banner1')
+            Forms\Components\FileUpload::make('profile_banner1')
                 ->label('Gambar 1')
                 ->directory('profile-banner1')
                 ->image(),
-            Forms\Components\FileUpload::make('profile-banner2')
+            Forms\Components\FileUpload::make('profile_banner2')
                 ->label('Gambar 2')
                 ->directory('profile-banner2')
                 ->image(),
