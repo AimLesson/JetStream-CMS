@@ -33,15 +33,12 @@ class BranchResource extends Resource
             Forms\Components\FileUpload::make('logo')->directory('logos')->image()->maxSize(2048),
             Forms\Components\FileUpload::make('profile_bg')
                 ->label('Gambar Latar')
-                ->directory('profile-bg')
                 ->image(),
             Forms\Components\FileUpload::make('profile_banner1')
                 ->label('Gambar 1')
-                ->directory('profile-banner1')
                 ->image(),
             Forms\Components\FileUpload::make('profile_banner2')
                 ->label('Gambar 2')
-                ->directory('profile-banner2')
                 ->image(),
             Forms\Components\RichEditor::make('visi')
                 ->label('Visi')
