@@ -12,7 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+ 
 class BranchResource extends Resource
 {
     protected static ?string $model = Branch::class;
@@ -29,14 +29,26 @@ class BranchResource extends Resource
     {
         return $form->schema([
             Forms\Components\TextInput::make('name')->required()->maxLength(255),
+            Forms\Components\TextInput::make('phone')->tel()->maxLength(15),
             Forms\Components\FileUpload::make('logo')->directory('logos')->image()->maxSize(2048),
+            Forms\Components\FileUpload::make('profile')
+                ->label('Gambar Latar')
+                ->directory('profile-bg')
+                ->image(),
+            Forms\Components\FileUpload::make('profile-banner1')
+                ->label('Gambar 1')
+                ->directory('profile-banner1')
+                ->image(),
+            Forms\Components\FileUpload::make('profile-banner2')
+                ->label('Gambar 2')
+                ->directory('profile-banner2')
+                ->image(),
             Forms\Components\RichEditor::make('company_profile')
                 ->maxLength(65535)
                 ->toolbarButtons(['bold', 'italic', 'strike', 'link', 'orderedList', 'unorderedList', 'heading', 'blockquote', 'codeBlock']),
             Forms\Components\RichEditor::make('about')
                 ->maxLength(65535)
                 ->toolbarButtons(['bold', 'italic', 'strike', 'link', 'orderedList', 'unorderedList', 'heading', 'blockquote', 'codeBlock']),
-            Forms\Components\TextInput::make('phone')->tel()->maxLength(15),
             Forms\Components\Textarea::make('address')->maxLength(65535),
         ]);
     }

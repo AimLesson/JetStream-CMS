@@ -16,5 +16,8 @@ class Branch extends Model
         'about',
         'phone',
         'address',
+        'profile_bg',
+        'profile_banner1',
+        'profile_banner2',
     ];
 }
