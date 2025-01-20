@@ -127,6 +127,9 @@
                     @endforeach
                     <!-- article - end -->
                 </div>
+                <div class="mt-6">
+                    {{ $newsList->links('pagination::tailwind') }}
+                </div>
             </div>
         </section>
 
